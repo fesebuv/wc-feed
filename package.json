@@ -1,0 +1,29 @@
+{
+  "name": "wc-feed",
+  "version": "0.0.1",
+  "description": "wc-feed",
+  "main": "index.js",
+  "scripts": {
+    "start": "${NODE_BIN:-node} index.js",
+    "test": "echo "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fesebuv/wc-feed.git"
+  },
+  "keywords": [
+    "wc",
+    "worldcup"
+  ],
+  "author": "Felipe S. Buenaño",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/fesebuv/wc-feed/issues"
+  },
+  "homepage": "https://github.com/fesebuv/wc-feed#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "node-fetch": "^2.1.2",
+    "querystring": "^0.2.0"
+  }
+}
