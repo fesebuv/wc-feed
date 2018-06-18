@@ -33,3 +33,9 @@ function getResults() {
 (function() {
   getResults();
 })();
+
+$(window).scroll(function(){
+  if ($(window).scrollTop() === $(document).height() - $(window).height()){
+    getResults();
+  }
+});
