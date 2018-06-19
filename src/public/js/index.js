@@ -34,8 +34,9 @@ function getResults() {
   getResults();
 })();
 
-$(window).scroll(function(){
-  if ($(window).scrollTop() === $(document).height() - $(window).height()){
+$(window).scroll(function() {
+  var hasScrolled = $(window).scrollTop() === $(document).height() - $(window).height();
+  if (hasScrolled) {
     getResults();
   }
 });

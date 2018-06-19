@@ -1,23 +1,6 @@
-body{
-    margin:0;
-    padding:0;
-}
-
-ul, li{
-    padding:0;
-    margin:0;
-}
-
-li{
-    list-style: none;
-}
-
-.container {
-  background: #01678F;
-  width:100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding:0
+body {
+  margin:0;
+  padding:0;
 }
 
 .photos {
@@ -31,13 +14,4 @@ li{
   display: block;
   margin: 10px 0;
   width: 100%;
-}
-
-.photos h3 {
-  display: inline-block;
-  color: #FFFFFF;
-  width: 300px;
-  white-space: nowrap;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
 }
