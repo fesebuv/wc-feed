@@ -1,7 +1,7 @@
 
 var PAGE = 0;
 
-function parseData(data) {
+function parseData (data) {
   var fragment = document.createDocumentFragment();
   var photos = data.photos.photo || [];
   photos.forEach(function (photo) {
@@ -12,13 +12,13 @@ function parseData(data) {
   return fragment;
 }
 
-function response(data) {
+function response (data) {
   var fragment = parseData(data);
   var root = document.getElementById('root');
   root.appendChild(fragment);
 }
 
-function getResults() {
+function getResults () {
   PAGE = PAGE + 1;
   $.ajax({
     url: '/feed',
@@ -30,11 +30,11 @@ function getResults() {
   });
 };
 
-(function() {
+(function () {
   getResults();
 })();
 
-$(window).scroll(function() {
+$(window).scroll(function () {
   var hasScrolled = $(window).scrollTop() === $(document).height() - $(window).height();
   if (hasScrolled) {
     getResults();
