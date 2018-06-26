@@ -7,9 +7,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('/feed', function (request, response, next) {
-  handlers.feed(request, response);
-});
+app.get('/feed', handlers.feed);
 
 module.exports.start = function () {
   return Promise.resolve()
