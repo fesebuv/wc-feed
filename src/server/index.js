@@ -9,8 +9,13 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/feed', handlers.feed);
 
-module.exports.start = function () {
+const start = function start() {
   return Promise.resolve()
     .then(() => app.listen(port))
     .catch(err => { console.log(err) });
+};
+
+module.exports = {
+  start,
+  app
 };
