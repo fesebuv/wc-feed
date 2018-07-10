@@ -19,8 +19,8 @@ const extras = [
 ];
 
 function getUri (request = {}) {
-  const { query } = request;
-  const { page = 1} = query;
+  const { query = {} } = request;
+  const { page = 1 } = query;
   const tagString = tags.join(', ');
   const extrasString = extras.join(', ');
 
@@ -53,5 +53,6 @@ function searchPhotos (request, response) {
 };
 
 module.exports = {
+  FLICKR_CONSTANTS,
   searchPhotos
 };

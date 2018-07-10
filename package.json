@@ -4,8 +4,9 @@
   "description": "wc-feed",
   "main": "index.js",
   "scripts": {
+    "coverage": "jest --coverage",
     "start": "${NODE_BIN:-node} index.js",
-    "test": "echo "
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
     "node-fetch": "^2.1.2",
     "querystring": "^0.2.0"
   },
-  "private": "true"
+  "private": "true",
+  "devDependencies": {
+    "jest": "^23.2.0"
+  }
 }
