@@ -30,7 +30,7 @@ function getResults () {
     success: response,
     dataType: 'json'
   });
-};
+}
 
 (function () {
   getResults();
