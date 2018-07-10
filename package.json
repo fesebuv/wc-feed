@@ -29,6 +29,8 @@
   },
   "private": "true",
   "devDependencies": {
-    "jest": "^23.2.0"
+    "jest": "^23.2.0",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8"
   }
 }
