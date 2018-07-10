@@ -4,7 +4,9 @@
   "description": "wc-feed",
   "main": "index.js",
   "scripts": {
+    "build": "webpack && npm-sass ./src/client/styles/styles.scss > ./src/public/css/output.css",
     "coverage": "jest --coverage",
+    "prestart": "npm run build",
     "start": "${NODE_BIN:-node} index.js",
     "test": "jest"
   },
@@ -30,6 +32,7 @@
   "private": "true",
   "devDependencies": {
     "jest": "^23.2.0",
+    "npm-sass": "^2.3.0",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8"
   }
