@@ -5,8 +5,10 @@ function parseData (data) {
   var fragment = document.createDocumentFragment();
   var photos = data.photos.photo || [];
   photos.forEach(function (photo) {
+    var src = photo.url_o || photo.url_n;
     var img = document.createElement('img');
-    img.src = photo.url_n;
+    img.src = src;
+    img.alt = src;
     fragment.appendChild(img);
   });
   return fragment;
@@ -34,9 +36,11 @@ function getResults () {
   getResults();
 })();
 
+window.getResults = getResults;
+
 $(window).scroll(function () {
   var hasScrolled = $(window).scrollTop() === $(document).height() - $(window).height();
   if (hasScrolled) {
-    getResults();
+    window.getResults();
   }
 });
