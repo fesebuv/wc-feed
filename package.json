@@ -28,7 +28,8 @@
   "dependencies": {
     "express": "^4.16.3",
     "node-fetch": "^2.1.2",
-    "querystring": "^0.2.0"
+    "querystring": "^0.2.0",
+    "whatwg-fetch": "^2.0.4"
   },
   "private": "true",
   "devDependencies": {

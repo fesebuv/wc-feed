@@ -1,4 +1,7 @@
 
+require('whatwg-fetch');
+const querystring = require('querystring');
+
 var PAGE = 0;
 
 function parseData (data) {
@@ -22,14 +25,13 @@ function response (data) {
 
 function getResults () {
   PAGE = PAGE + 1;
-  $.ajax({
-    url: '/feed',
-    data: {
-      page: PAGE
-    },
-    success: response,
-    dataType: 'json'
-  });
+  const params = {
+    page: PAGE
+  };
+  const uri = `/feed?${querystring.stringify(params)}`;
+  fetch(uri)
+    .then((resp) => resp.json())
+    .then(response);
 };
 
 (function () {
@@ -37,9 +39,8 @@ function getResults () {
 })();
 
 window.getResults = getResults;
-
-$(window).scroll(function () {
-  var hasScrolled = $(window).scrollTop() === $(document).height() - $(window).height();
+window.addEventListener('scroll', function(evt) {
+  const hasScrolled = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
   if (hasScrolled) {
     window.getResults();
   }
