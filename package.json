@@ -4,7 +4,8 @@
   "description": "wc-feed",
   "main": "index.js",
   "scripts": {
-    "build": "webpack && npm-sass ./src/client/styles/styles.scss > ./src/public/css/output.css",
+    "prebuild": "rm -rf src/public/css && mkdir src/public/css",
+    "build": "webpack && npm-sass ./src/client/styles/styles.scss > ./src/public/css/styles.css",
     "coverage": "jest --coverage",
     "prestart": "npm run build",
     "start": "${NODE_BIN:-node} index.js",
