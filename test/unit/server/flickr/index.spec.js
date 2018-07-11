@@ -19,14 +19,7 @@ describe('flickr', () => {
     flickr.FLICKR_CONSTANTS.endpoint = jest.fn(() => '');
     console.log = jest.fn();
 
-    const request = {
-      query: ''
-    };
-
     return flickr.searchPhotos()
-      .then((data) => {
-        console.log(data, '<< data');
-      })
       .catch((err) => {
         expect(err).toBeInstanceOf(Error);
       });

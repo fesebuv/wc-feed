@@ -32,7 +32,6 @@ function getUri (request = {}) {
     text: tagString,
     per_page: '10',
     extras: extrasString,
-    media: 'photos',
     api_key: process.env.FLICKR_KEY,
     format: 'json',
     nojsoncallback: '?',
@@ -44,13 +43,13 @@ function getUri (request = {}) {
   return `${FLICKR_CONSTANTS.endpoint}?${querystring.stringify(params)}`;
 }
 
-function searchPhotos (request, response) {
+function searchPhotos (request) {
   const uri = getUri(request);
 
   return fetch(uri)
     .then((data) => data.json())
     .catch((err) => console.log(err));
-};
+}
 
 module.exports = {
   FLICKR_CONSTANTS,
