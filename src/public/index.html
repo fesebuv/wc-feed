@@ -7,8 +7,19 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
   </head>
   <body>
-    <h1/> hello world cup! </h1>
-    <div id="root" class="photos"></div>
+    <div id="app">
+      <h1>{{ message }}</h1>
+      <div class="photos">
+        <image-item
+          v-for="item in imageList"
+          v-bind:item="item"
+          v-bind:key="item.src">
+        </image-item>
+      </div>
+    </div>
+
+    <h1 style="display:none;"> Hello World Cup! </h1>
+    <div id="root" class="photos" style="display:none;"></div>
     <script src="js/bundle.js"></script>
   </body>
 </html>
