@@ -1,47 +1,55 @@
 
-require('whatwg-fetch');
+const whatwgFetch = require('whatwg-fetch');
 const querystring = require('querystring');
+const { app } = require('../app');
 
-var PAGE = 0;
+let PAGE = 0;
 
-function parseData (data) {
-  var fragment = document.createDocumentFragment();
-  var photos = data.photos.photo || [];
-  photos.forEach(function (photo) {
-    var src = photo.url_o || photo.url_n;
-    var img = document.createElement('img');
-    img.src = src;
-    img.alt = src;
-    fragment.appendChild(img);
-  });
-  return fragment;
+function hasScrolled () {
+  return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
 }
 
-function response (data) {
-  var fragment = parseData(data);
-  var root = document.getElementById('root');
-  root.appendChild(fragment);
-}
-
-function getResults () {
+function getUri () {
   PAGE = PAGE + 1;
   const params = {
     page: PAGE
   };
-  const uri = `/feed?${querystring.stringify(params)}`;
+  return `/feed?${querystring.stringify(params)}`;
+}
+
+function fetchImages () {
+  const uri = getUri ();
   fetch(uri)
     .then((resp) => resp.json())
-    .then(response);
+    .then(getImages)
 };
 
+function getImages (data) {
+  if(!Array.isArray(app.imageList)) {
+    return;
+  }
+
+  const photos = data.photos.photo || [];
+
+  photos.forEach(function (photo) {
+    const { id = '', title = '', url_o, url_n } = photo;
+    const src = url_o || url_n;
+
+    app.imageList.push({
+      id,
+      src,
+      title
+    });
+  });
+}
+
 (function () {
-  getResults();
+  fetchImages();
 })();
 
-window.getResults = getResults;
 window.addEventListener('scroll', function(evt) {
-  const hasScrolled = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
-  if (hasScrolled) {
-    window.getResults();
+  const scrolled = hasScrolled();
+  if (scrolled) {
+    fetchImages();
   }
 });
