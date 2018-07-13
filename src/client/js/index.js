@@ -1,22 +1,24 @@
 
 const whatwgFetch = require('whatwg-fetch');
 const querystring = require('querystring');
-const { default: Vue }  = require('vue');
 const { app } = require('../app');
 
-
-var PAGE = 0;
+let PAGE = 0;
 
 function hasScrolled () {
   return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
 }
 
-function getResults () {
+function getUri () {
   PAGE = PAGE + 1;
   const params = {
     page: PAGE
   };
-  const uri = `/feed?${querystring.stringify(params)}`;
+  return `/feed?${querystring.stringify(params)}`;
+}
+
+function getResults () {
+  const uri = getUri ();
   fetch(uri)
     .then((resp) => resp.json())
     .then(getImages)
@@ -27,16 +29,16 @@ function getImages (data) {
     return;
   }
 
-  var photos = data.photos.photo || [];
+  const photos = data.photos.photo || [];
+
   photos.forEach(function (photo) {
-    var id = photo.id || '';
-    var src = photo.url_o || photo.url_n;
-    var title = photo.title || '';
+    const { id = '', title = '', url_o, url_n } = photo;
+    const src = url_o || url_n;
 
     app.imageList.push({
-      id: id,
-      src: src,
-      title: title
+      id,
+      src,
+      title
     });
   });
 }
