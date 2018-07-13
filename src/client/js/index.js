@@ -2,8 +2,14 @@
 const whatwgFetch = require('whatwg-fetch');
 const querystring = require('querystring');
 const { default: Vue }  = require('vue');
+const { app } = require('../app');
+
 
 var PAGE = 0;
+
+function hasScrolled () {
+  return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
+}
 
 function getResults () {
   PAGE = PAGE + 1;
@@ -16,18 +22,11 @@ function getResults () {
     .then(getImages)
 };
 
-(function () {
-  getResults();
-})();
-
-window.addEventListener('scroll', function(evt) {
-  const hasScrolled = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
-  if (hasScrolled) {
-    getResults();
-  }
-});
-
 function getImages (data) {
+  if(!Array.isArray(app.imageList)) {
+    return;
+  }
+
   var photos = data.photos.photo || [];
   photos.forEach(function (photo) {
     var src = photo.url_o || photo.url_n;
@@ -37,15 +36,13 @@ function getImages (data) {
   });
 }
 
-Vue.component('image-item', {
-  props: ['item'],
-  template: '<img v-bind:src="item.src"/>'
-});
+(function () {
+  getResults();
+})();
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    imageList: [],
-    message: 'Hello World Cup!'
+window.addEventListener('scroll', function(evt) {
+  const scrolled = hasScrolled();
+  if (scrolled) {
+    getResults();
   }
 });
