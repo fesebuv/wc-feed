@@ -17,7 +17,7 @@ function getUri () {
   return `/feed?${querystring.stringify(params)}`;
 }
 
-function getResults () {
+function fetchImages () {
   const uri = getUri ();
   fetch(uri)
     .then((resp) => resp.json())
@@ -44,12 +44,12 @@ function getImages (data) {
 }
 
 (function () {
-  getResults();
+  fetchImages();
 })();
 
 window.addEventListener('scroll', function(evt) {
   const scrolled = hasScrolled();
   if (scrolled) {
-    getResults();
+    fetchImages();
   }
 });
