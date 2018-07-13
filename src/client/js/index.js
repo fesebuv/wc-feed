@@ -29,9 +29,14 @@ function getImages (data) {
 
   var photos = data.photos.photo || [];
   photos.forEach(function (photo) {
+    var id = photo.id || '';
     var src = photo.url_o || photo.url_n;
+    var title = photo.title || '';
+
     app.imageList.push({
-      src: src
+      id: id,
+      src: src,
+      title: title
     });
   });
 }

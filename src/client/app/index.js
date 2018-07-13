@@ -2,7 +2,7 @@ const { default: Vue }  = require('vue');
 
 Vue.component('image-item', {
   props: ['item'],
-  template: '<img v-bind:src="item.src"/>'
+  template: '<img v-bind:src="item.src" v-bind:alt="item.title"/>'
 });
 
 const app = new Vue({
