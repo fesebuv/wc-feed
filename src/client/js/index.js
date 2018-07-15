@@ -9,16 +9,16 @@ function hasScrolled () {
   return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
 }
 
-function getUri () {
-  PAGE = PAGE + 1;
+function getUri (page = 0) {
   const params = {
-    page: PAGE
+    page
   };
   return `/feed?${querystring.stringify(params)}`;
 }
 
 function fetchImages () {
-  const uri = getUri ();
+  PAGE = PAGE + 1;
+  const uri = getUri (PAGE);
   fetch(uri)
     .then((resp) => resp.json())
     .then(getImages)
