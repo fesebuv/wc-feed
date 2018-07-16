@@ -1,6 +1,6 @@
 const whatwgFetch = require('whatwg-fetch');
 const { default: Vue }  = require('vue');
-const { hasScrolled, getUri } = require('./utils');
+const { hasScrolled, getUri, getTemplate } = require('./utils');
 
 Vue.component('image-item', {
   props: ['item'],
@@ -50,7 +50,8 @@ const app = new Vue({
         }
       });
     }
-  }
+  },
+  template: getTemplate()
 });
 
 module.exports = {
