@@ -1,7 +1,3 @@
-// const whatwgFetch = require('whatwg-fetch');
-// const { default: Vue }  = require('vue');
-// const { hasScrolled, getUri, getTemplate } = require('./utils');
-
 import Vue from 'vue';
 import 'whatwg-fetch';
 import { hasScrolled, getUri, getTemplate } from './utils';
